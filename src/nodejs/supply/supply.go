@@ -323,9 +323,10 @@ func (s *Supplier) BuildDependencies() error {
 
 	case s.IsVendored:
 		s.Log.Info("Prebuild detected (node_modules already exists)")
-		if err := s.NPM.Rebuild(s.Stager.BuildDir()); err != nil {
-			return err
-		}
+		// if err := s.NPM.Rebuild(s.Stager.BuildDir()); err != nil {
+		// 	return err
+		// }
+		s.Log.Info("Skipping Rebuild to support packaged workspace node_modules")
 
 	default:
 		if err := s.NPM.Build(s.Stager.BuildDir(), s.Stager.CacheDir()); err != nil {
